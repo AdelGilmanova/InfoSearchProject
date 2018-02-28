@@ -47,7 +47,7 @@ public class MainController extends BaseController {
         //создание списка с именами файлов
         ArrayList<String> filesList = new ArrayList<String>();
         ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource("classpath:information/invert/");
+        Resource resource = appContext.getResource("classpath*:information/invert/");
         File myFolder = resource.getFile();
         File[] files = myFolder.listFiles();
         for (File file : files) {
@@ -58,7 +58,7 @@ public class MainController extends BaseController {
         if (words.length == 1) {
             ArrayList<String> list = new ArrayList<String>();
             if (filesList.contains(words[0])) {
-                String name = "classpath:information/invert/" + words[0];
+                String name = "classpath*:information/invert/" + words[0];
                 String line = getFileContent(name);
                 String lineData[] = line.split(" ");
                 for (String number : lineData) {
@@ -80,7 +80,7 @@ public class MainController extends BaseController {
             //Первый лист для сравнения
             List<String> firstList = new ArrayList<String>();
             if (filesList.contains(words[0])) {
-                String name = "classpath:information/invert/" + words[0];
+                String name = "classpath*:information/invert/" + words[0];
                 String line = getFileContent(name);
                 String lineData[] = line.split(" ");
                 firstList = Arrays.asList(lineData);
@@ -89,7 +89,7 @@ public class MainController extends BaseController {
             //работа со след словом
             for (int i = 1; i < words.length; i++) {
                 if (filesList.contains(words[i])) {
-                    String name = "classpath:information/invert/" + words[i];
+                    String name = "classpath*:information/invert/" + words[i];
                     String line = getFileContent(name);
                     String lineData[] = line.split(" ");
                     List<String> list = Arrays.asList(lineData);
@@ -133,7 +133,7 @@ public class MainController extends BaseController {
     public Map<String, String> index() throws IOException {
         Map<String, String> index = new HashMap<String, String>();
         ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource("classpath:information/index.txt");
+        Resource resource = appContext.getResource("classpath*:information/index.txt");
         Scanner scanner = new Scanner(resource.getFile());
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
