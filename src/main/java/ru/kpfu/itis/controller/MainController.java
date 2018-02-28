@@ -144,13 +144,13 @@ public class MainController extends BaseController {
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("information/index.txt").getFile());
 
-        Resource resource = new ClassPathResource("information/index.txt");
-        File file = resource.getFile();
+//        Resource resource = new ClassPathResource("information/index.txt");
+//        File file = resource.getFile();
 
 //        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
 //        File file=resolver.getResource("classpath:information/index.txt").getFile();
 
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = new Scanner(new File("information/index.txt"));
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String lineData[] = line.split(" ");
