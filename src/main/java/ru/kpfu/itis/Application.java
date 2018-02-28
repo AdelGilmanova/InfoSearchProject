@@ -14,6 +14,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 @SpringBootApplication
 @EnableAutoConfiguration(
         exclude = { SessionAutoConfiguration.class, SecurityAutoConfiguration.class })
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 public class Application extends SpringBootServletInitializer {
 
     @Override
