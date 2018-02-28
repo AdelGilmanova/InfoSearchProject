@@ -137,10 +137,10 @@ public class MainController extends BaseController {
 
     public Map<String, String> index() throws IOException {
         Map<String, String> index = new HashMap<String, String>();
-        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource("classpath:information/index.txt");
-        System.out.println("!!!!!!!!!!"+resource.getURI()+"!!!!!!!!!!!!!!!!!!!");
-        
+//        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
+//        Resource resource = appContext.getResource("classpath:information/index.txt");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("/information/index.txt");
+
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("/information/index.txt").getFile());
 
@@ -150,7 +150,7 @@ public class MainController extends BaseController {
 //        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
 //        File file=resolver.getResource("classpath:information/index.txt").getFile();
 
-        Scanner scanner = new Scanner(resource.getFile());
+        Scanner scanner = new Scanner(inputStream);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String lineData[] = line.split(" ");
