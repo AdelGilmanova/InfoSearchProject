@@ -29,7 +29,7 @@ public class MainController extends BaseController {
                          RedirectAttributes redirectAttributes) throws IOException {
         redirectAttributes.addFlashAttribute("text", text);
 
-        HashSet<String> results = new HashSet<>();
+        HashSet<String> results = new HashSet<String>();
         Map<String, String> index = index();
         Porter porter = new Porter();
 
@@ -45,7 +45,7 @@ public class MainController extends BaseController {
         }
 
         //создание списка с именами файлов
-        ArrayList<String> filesList = new ArrayList<>();
+        ArrayList<String> filesList = new ArrayList<String>();
         ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
         Resource resource = appContext.getResource("information/invert/");
         File myFolder = resource.getFile();
@@ -56,7 +56,7 @@ public class MainController extends BaseController {
 
         //если слово всего одно
         if (words.length == 1) {
-            ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> list = new ArrayList<String>();
             if (filesList.contains(words[0])) {
                 String name = "information/invert/" + words[0];
                 String line = getFileContent(name);
@@ -76,9 +76,9 @@ public class MainController extends BaseController {
         //если слов много
         else if (words.length > 1) {
             //Лист с конъюнкцией
-            ArrayList<String> resOfCon = new ArrayList<>();
+            ArrayList<String> resOfCon = new ArrayList<String>();
             //Первый лист для сравнения
-            List<String> firstList = new ArrayList<>();
+            List<String> firstList = new ArrayList<String>();
             if (filesList.contains(words[0])) {
                 String name = "information/invert/" + words[0];
                 String line = getFileContent(name);
