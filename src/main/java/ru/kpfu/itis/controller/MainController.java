@@ -141,7 +141,7 @@ public class MainController extends BaseController {
         Map<String, String> index = new HashMap<String, String>();
 //        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
 //        Resource resource = appContext.getResource("classpath:information/index.txt");
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("/information/index.txt");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("information/index.txt");
 
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("/information/index.txt").getFile());
