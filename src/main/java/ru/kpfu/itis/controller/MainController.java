@@ -142,7 +142,7 @@ public class MainController extends BaseController {
 //        System.out.println("!!!!!!!!!!"+resource.getURI()+"!!!!!!!!!!!!!!!!!!!");
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("*/information/index.txt").getFile());
+        File file = new File(classLoader.getResource("/information/index.txt").getFile());
 
 //        Resource resource = new ClassPathResource("information/index.txt");
 //        File file = resource.getFile();
