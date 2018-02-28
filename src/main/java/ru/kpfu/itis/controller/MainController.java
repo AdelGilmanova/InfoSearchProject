@@ -24,6 +24,8 @@ import java.util.*;
 @Controller
 public class MainController extends BaseController {
 
+    public static final String PATH = "information/invert/";
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMainPage() {
         return "main";
@@ -52,7 +54,7 @@ public class MainController extends BaseController {
         //создание списка с именами файлов
         ArrayList<String> filesList = new ArrayList<String>();
         ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource("classpath*:information/invert/");
+        Resource resource = appContext.getResource(PATH);
         File myFolder = resource.getFile();
         File[] files = myFolder.listFiles();
         for (File file : files) {
@@ -63,7 +65,7 @@ public class MainController extends BaseController {
         if (words.length == 1) {
             ArrayList<String> list = new ArrayList<String>();
             if (filesList.contains(words[0])) {
-                String name = "classpath*:information/invert/" + words[0];
+                String name = "information/invert/" + words[0];
                 String line = getFileContent(name);
                 String lineData[] = line.split(" ");
                 for (String number : lineData) {
@@ -85,7 +87,7 @@ public class MainController extends BaseController {
             //Первый лист для сравнения
             List<String> firstList = new ArrayList<String>();
             if (filesList.contains(words[0])) {
-                String name = "classpath*:information/invert/" + words[0];
+                String name = PATH + words[0];
                 String line = getFileContent(name);
                 String lineData[] = line.split(" ");
                 firstList = Arrays.asList(lineData);
@@ -94,7 +96,7 @@ public class MainController extends BaseController {
             //работа со след словом
             for (int i = 1; i < words.length; i++) {
                 if (filesList.contains(words[i])) {
-                    String name = "classpath*:information/invert/" + words[i];
+                    String name = PATH + words[i];
                     String line = getFileContent(name);
                     String lineData[] = line.split(" ");
                     List<String> list = Arrays.asList(lineData);
@@ -159,14 +161,13 @@ public class MainController extends BaseController {
         return index;
     }
 
-    private static String getFileContent(String filePath) throws IOException {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource(filePath);
+    private String getFileContent(String filePath) throws IOException {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {
             br = new BufferedReader(
-                    new InputStreamReader(resource.getInputStream(), "UTF-8"));
+                    new InputStreamReader(inputStream, "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
