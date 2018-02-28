@@ -141,8 +141,8 @@ public class MainController extends BaseController {
 //        Resource resource = appContext.getResource("information/index.txt");
 //        System.out.println("!!!!!!!!!!"+resource.getURI()+"!!!!!!!!!!!!!!!!!!!");
 
-//        ClassLoader classLoader = getClass().getClassLoader();
-//        File file = new File(classLoader.getResource("information/index.txt").getFile());
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("information/index.txt").getFile());
 
 //        Resource resource = new ClassPathResource("information/index.txt");
 //        File file = resource.getFile();
@@ -150,7 +150,7 @@ public class MainController extends BaseController {
 //        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
 //        File file=resolver.getResource("classpath:information/index.txt").getFile();
 
-        Scanner scanner = new Scanner(new File("information/index.txt"));
+        Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String lineData[] = line.split(" ");
