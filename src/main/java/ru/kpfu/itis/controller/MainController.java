@@ -132,9 +132,11 @@ public class MainController extends BaseController {
 
     public Map<String, String> index() throws IOException {
         Map<String, String> index = new HashMap<String, String>();
-        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-        Resource resource = appContext.getResource("classpath*:information/index.txt");
-        Scanner scanner = new Scanner(resource.getFile());
+//        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
+//        Resource resource = appContext.getResource("classpath*:information/index.txt");
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("information/index.txt").getFile());
+        Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String lineData[] = line.split(" ");
