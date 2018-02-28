@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -138,8 +139,12 @@ public class MainController extends BaseController {
 
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("information/index.txt").getFile());
-        Resource resource = new ClassPathResource("information/index.txt");
-        File file = resource.getFile();
+
+//        Resource resource = new ClassPathResource("information/index.txt");
+//        File file = resource.getFile();
+
+        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
+        File file=resolver.getResource("classpath*:information/index.txt").getFile();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
