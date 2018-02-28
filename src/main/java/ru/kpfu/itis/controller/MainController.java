@@ -141,11 +141,11 @@ public class MainController extends BaseController {
 //        Resource resource = appContext.getResource("information/index.txt");
 //        System.out.println("!!!!!!!!!!"+resource.getURI()+"!!!!!!!!!!!!!!!!!!!");
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("/information/index.txt").getFile());
+//        ClassLoader classLoader = getClass().getClassLoader();
+//        File file = new File(classLoader.getResource("/information/index.txt").getFile());
 
-//        Resource resource = new ClassPathResource("information/index.txt");
-//        File file = resource.getFile();
+        Resource resource = new ClassPathResource("information/index.txt");
+        File file = resource.getFile();
 
 //        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
 //        File file=resolver.getResource("classpath:information/index.txt").getFile();
