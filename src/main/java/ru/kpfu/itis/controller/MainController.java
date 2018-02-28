@@ -2,6 +2,7 @@ package ru.kpfu.itis.controller;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,8 +135,11 @@ public class MainController extends BaseController {
         Map<String, String> index = new HashMap<String, String>();
 //        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
 //        Resource resource = appContext.getResource("classpath*:information/index.txt");
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("information/index.txt").getFile());
+
+//        ClassLoader classLoader = getClass().getClassLoader();
+//        File file = new File(classLoader.getResource("information/index.txt").getFile());
+        Resource resource = new ClassPathResource("information/index.txt");
+        File file = resource.getFile();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
