@@ -76,7 +76,6 @@ public class MainController extends BaseController {
                 redirectAttributes.addFlashAttribute("answer", "no results");
             }
         }
-
         //если слов много
         else if (words.length > 1) {
             //Лист с конъюнкцией
@@ -89,7 +88,6 @@ public class MainController extends BaseController {
                 String lineData[] = line.split(" ");
                 firstList = Arrays.asList(lineData);
             }
-
             //работа со след словом
             for (int i = 1; i < words.length; i++) {
                 if (filesList.contains(words[i])) {
