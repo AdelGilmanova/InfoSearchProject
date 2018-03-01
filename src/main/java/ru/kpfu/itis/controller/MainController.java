@@ -76,6 +76,7 @@ public class MainController extends BaseController {
                 redirectAttributes.addFlashAttribute("answer", "no results");
             }
         }
+
         //если слов много
         else if (words.length > 1) {
             //Лист с конъюнкцией
