@@ -130,7 +130,6 @@ public class MainController extends BaseController {
         return "redirect:/";
     }
 
-
     public Map<String, String> index() throws IOException {
         Map<String, String> index = new HashMap<String, String>();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("information/index.txt");
@@ -145,21 +144,7 @@ public class MainController extends BaseController {
 
     private String getFileContent(String filePath) throws IOException {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        } finally {
-            if (br != null) try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
+        Scanner scanner = new Scanner(inputStream);
+        return scanner.nextLine();
     }
 }
