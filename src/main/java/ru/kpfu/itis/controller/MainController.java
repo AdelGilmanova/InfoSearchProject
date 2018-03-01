@@ -63,13 +63,9 @@ public class MainController extends BaseController {
         if (words.length == 1) {
             ArrayList<String> list = new ArrayList<String>();
             if (filesMap.containsKey(words[0])) {
-                String name = PATH + words[0];
-                inputStream = getClass().getClassLoader().getResourceAsStream(name);
-                scanner = new Scanner(inputStream);
-                String line = scanner.nextLine();
-                String lineData[] = line.split(" ");
-                for (String number : lineData) {
-                    String name1 = number + ".txt";
+                ArrayList<String> pages = filesMap.get(words[0]);
+                for (String page : pages) {
+                    String name1 = page + ".txt";
                     if (index.containsKey(name1)) {
                         list.add(index.get(name1));
                     }
@@ -87,18 +83,12 @@ public class MainController extends BaseController {
             //Первый лист для сравнения
             List<String> firstList = new ArrayList<String>();
             if (filesMap.containsKey(words[0])) {
-                String name = PATH + words[0];
-                String line = getFileContent(name);
-                String lineData[] = line.split(" ");
-                firstList = Arrays.asList(lineData);
+                firstList = filesMap.get(words[0]);
             }
             //работа со след словом
             for (int i = 1; i < words.length; i++) {
                 if (filesMap.containsKey(words[i])) {
-                    String name = PATH + words[i];
-                    String line = getFileContent(name);
-                    String lineData[] = line.split(" ");
-                    List<String> list = Arrays.asList(lineData);
+                    List<String> list = filesMap.get(words[i]);
 
                     //проверка одинакового содержимого
                     if (i == 1) {
@@ -116,7 +106,6 @@ public class MainController extends BaseController {
                             }
                         }
                     }
-
                     //заполнение листа с урлами
                     for (String number : resOfCon) {
                         String name1 = number + ".txt";
@@ -145,11 +134,5 @@ public class MainController extends BaseController {
             index.put(lineData[0], lineData[1]);
         }
         return index;
-    }
-
-    private String getFileContent(String filePath) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
-        Scanner scanner = new Scanner(inputStream);
-        return scanner.nextLine();
     }
 }
