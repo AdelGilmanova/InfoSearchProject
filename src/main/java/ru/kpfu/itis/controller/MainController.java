@@ -1,11 +1,6 @@
 package ru.kpfu.itis.controller;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +9,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.kpfu.itis.util.Porter;
 
 import java.io.*;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 
 /**
@@ -140,19 +133,7 @@ public class MainController extends BaseController {
 
     public Map<String, String> index() throws IOException {
         Map<String, String> index = new HashMap<String, String>();
-//        ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[]{});
-//        Resource resource = appContext.getResource("classpath:information/index.txt");
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("information/index.txt");
-
-//        ClassLoader classLoader = getClass().getClassLoader();
-//        File file = new File(classLoader.getResource("/information/index.txt").getFile());
-
-//        Resource resource = new ClassPathResource("information/index.txt");
-//        File file = resource.getFile();
-
-//        PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
-//        File file=resolver.getResource("classpath:information/index.txt").getFile();
-
         Scanner scanner = new Scanner(inputStream);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
