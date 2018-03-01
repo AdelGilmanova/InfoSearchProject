@@ -60,7 +60,9 @@ public class MainController extends BaseController {
             ArrayList<String> list = new ArrayList<String>();
             if (filesList.contains(words[0])) {
                 String name = PATH + words[0];
-                String line = getFileContent(name);
+                inputStream = getClass().getClassLoader().getResourceAsStream(name);
+                scanner = new Scanner(inputStream);
+                String line = scanner.nextLine();
                 String lineData[] = line.split(" ");
                 for (String number : lineData) {
                     String name1 = number + ".txt";
