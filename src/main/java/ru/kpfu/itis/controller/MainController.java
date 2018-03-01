@@ -42,6 +42,7 @@ public class MainController extends BaseController {
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].replaceAll("\\,|\\.|\\?|\\-|\\=|\\+|\\(|\\)|\\*|\\/|\\!|\"", "");
             words[i] = porter.stem(words[i]) + ".txt";
+            System.out.println("!!!!!!!!!!!!!!!!!!!"+words[i]+"!!!!!!!!!!!!!!!!!!!");
         }
 
         //создание списка с именами файлов
