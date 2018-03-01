@@ -45,20 +45,24 @@ public class MainController extends BaseController {
         }
 
         //создание списка с именами файлов
-        ArrayList<String> filesList = new ArrayList<String>();
+        HashMap<String, ArrayList<String>> filesMap = new HashMap<String, ArrayList<String>>();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("information/invert.txt");
         Scanner scanner = new Scanner(inputStream);
-        String line1 = scanner.nextLine();
-        String lineData1[] = line1.split(" ");
-        for (int i = 0; i < lineData1.length; i++) {
-            filesList.add(lineData1[i] + ".txt");
+        while (scanner.hasNextLine()) {
+            ArrayList<String> list = new ArrayList<String>();
+            String line1 = scanner.nextLine();
+            String lineData1[] = line1.split(" ");
+            for (int i = 1; i < lineData1.length; i++) {
+                list.add(lineData1[i]);
+            }
+            filesMap.put(lineData1[0] + ".txt", list);
         }
 
 
         //если слово всего одно
         if (words.length == 1) {
             ArrayList<String> list = new ArrayList<String>();
-            if (filesList.contains(words[0])) {
+            if (filesMap.containsKey(words[0])) {
                 String name = PATH + words[0];
                 inputStream = getClass().getClassLoader().getResourceAsStream(name);
                 scanner = new Scanner(inputStream);
@@ -82,7 +86,7 @@ public class MainController extends BaseController {
             ArrayList<String> resOfCon = new ArrayList<String>();
             //Первый лист для сравнения
             List<String> firstList = new ArrayList<String>();
-            if (filesList.contains(words[0])) {
+            if (filesMap.containsKey(words[0])) {
                 String name = PATH + words[0];
                 String line = getFileContent(name);
                 String lineData[] = line.split(" ");
@@ -90,7 +94,7 @@ public class MainController extends BaseController {
             }
             //работа со след словом
             for (int i = 1; i < words.length; i++) {
-                if (filesList.contains(words[i])) {
+                if (filesMap.containsKey(words[i])) {
                     String name = PATH + words[i];
                     String line = getFileContent(name);
                     String lineData[] = line.split(" ");
