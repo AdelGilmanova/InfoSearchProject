@@ -148,8 +148,7 @@ public class MainController extends BaseController {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {
-            br = new BufferedReader(
-                    new InputStreamReader(inputStream, "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
